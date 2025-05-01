@@ -19,14 +19,20 @@ function App() {
         </div>
 
         <div className="bg-[url(/src/assets/bg2.jpg)] bg-cover">
-          <div className="backdrop-blur-[6px]">
+          <div className="backdrop-blur-[4px]">
             <Projects />
           </div>
         </div>
 
         <div className="bg-[url(/src/assets/bg3.jpg)] bg-cover">
-          <div className="backdrop-blur-[4px]">
+          <div className="backdrop-blur-[6px]">
             <Album />
+          </div>
+        </div >
+
+        <div className="bg-[url(/src/assets/bg3.jpg)] bg-cover">
+          <div className="backdrop-blur-[3px]">
+            {/* <Album /> */}
           </div>
         </div >
       </div>

@@ -1,6 +1,8 @@
 import { useEffect, useState, useRef } from "react"
+import "../Effect.css"
 import GitHubIcon from '@mui/icons-material/GitHub';
 import EmailIcon from '@mui/icons-material/Email';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 const menuItem = ["profile", "projects", "album", "contact"]
 
@@ -64,19 +66,19 @@ const NavBar: React.FC = () => {
         flex justify-between items-center bg-black">
 
             {/* Logo */}
-            <h1 className="hover:opacity-70 hover:cursor-pointer p-3 rounded-md 
+            <h1 className="hover:cursor-pointer p-3 rounded-md 
              font-[Anta] text-white text-[2.25rem] 
-             min-md:after:content-['_Fan']">
+             min-md:after:content-['_Fan'] capture-hover-effect">
                 <a href="#profile">Silver</a>
             </h1>
 
             {/* Navigation items */}
-            <ul className="uppercase flex items-center list-none gap-30 text-[1.5rem]
+            <ul className="uppercase flex items-center list-none gap-30 text-[1.375rem]
             max-xl:gap-20 max-lg:gap-12 max-md:gap-6">
                 {
                     menuItem.map((item: string, key: number) => (
                         <li key={`list-${key}`} className={`p-3 rounded-md transition hover:cursor-pointer hover:scale-150
-                        ${activeSection == item ? "bg-yellow-400/80 text-black shadow-md" : ""}`}>
+                        ${activeSection == item ? "bg-yellow-400/80 text-black shadow-md before:content-['✦']" : ""}`}>
                             <a key={`link-${key}`} href={`#${item}`}>
                                 {item}
                             </a>
@@ -88,6 +90,9 @@ const NavBar: React.FC = () => {
             <div className="flex justify-between gap-6">
                 <a href="https://github.com/silverfankw" target="_blank">
                     <GitHubIcon fontSize="large" sx={{ transitionProperty: "scale", ":hover": { scale: 1.5 } }} />
+                </a>
+                <a href="https://www.linkedin.com/in/silverf/" target="_blank">
+                    <LinkedInIcon fontSize="large" sx={{ transitionProperty: "scale", ":hover": { scale: 1.5 } }} />
                 </a>
                 <a href="mailto:silverfankw@gmail.com">
                     <EmailIcon fontSize="large" sx={{ transitionProperty: "scale", ":hover": { scale: 1.5 } }} />

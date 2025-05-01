@@ -36,14 +36,14 @@ const ProfileCard: React.FC = () => {
                 <div className="text-center flex flex-col gap-10">
                     {/* Greetings */}
                     <h1 className="text-[4rem] leading-25 titillium-web-bold max-lg:leading-20">
-                        <GradientText text="Hi! I'm Silver" />
-                        , a frontend developer based in Hong Kong.
+                        <GradientText text="Hello I'm Silver" />
+                        👋🏻, a frontend developer based in Hong Kong 🇭🇰
                     </h1>
 
                     {/* Brief Intro */}
                     <div className="text-[1.5rem] tracking-wide">
                         <span className="py-10 leading-12 max-md:leading-4">
-                            Graduated from HKUST in Computer Science Major, with 3 years frontend experience in in-house project and solution integrator (SI) company, ranging from e-commerce to property industry.
+                            🎓 Graduated from HKUST in Computer Science Major, with 3 years frontend experience in in-house project and solution integrator (SI) company, ranging from e-commerce to property industry.
                             Aims to provide the best user experience with seamless interaction.
                         </span>
                     </div>

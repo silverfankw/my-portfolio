@@ -47,11 +47,11 @@ const Album: React.FC = () => {
     return (
         <section id="album" className="text-center flex flex-col py-30 gap-10">
             <h1 className="text-[4rem] leading-25 titillium-web-bold max-lg:leading-20">
-                <GradientText text="Album Gallery" />
+                <GradientText text="Album Gallery" /> 🌆 📸
             </h1>
 
-            <span className="p-10 text-[2rem] leading-15">I love photography, especially breathtaking scenery, unique building, skyscraper and special Hong Kong buses. Sometimes I will bring my camera to capture any great moment in my spare time.</span>
-            <span className="px-10 text-[2rem] leading-15">The following photos are some that I took a few years ago and I found them beautiful, and would like to share with you :)</span>
+            <span className="p-10 text-[1.75rem] leading-15">I love photography, especially breathtaking scenery, unique building and special buses. Sometimes I will bring my camera to capture any great moment in my spare time. 😝</span>
+            <span className="px-10 text-[1.75rem] leading-15">The following photos are some that I took and I found them beautiful, and would like to share with you.  🤩</span>
 
             <RowsPhotoAlbum
                 photos={photos}
