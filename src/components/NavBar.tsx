@@ -4,13 +4,13 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import EmailIcon from '@mui/icons-material/Email';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
-const menuItem = ["profile", "projects", "album", "contact"]
+const menuItem: string[] = ["profile", "projects", "album", "contact"]
 
 const NavBar: React.FC = () => {
     const [activeSection, setActiveSection] = useState<string | null>(null);
     const [opacity, setOpacity] = useState<number>(1);
 
-    const navBarRef = useRef(null);
+    const navBarRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const headerHeight: number = navBarRef?.current?.['clientHeight'] ?? 0; // 110
@@ -39,7 +39,7 @@ const NavBar: React.FC = () => {
         const options = {
             root: null,
             rootMargin: "0px",
-            threshold: 0.1,
+            threshold: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9],
         };
 
         const observer = new IntersectionObserver((entries: IntersectionObserverEntry[]) => {
@@ -56,7 +56,7 @@ const NavBar: React.FC = () => {
         });
 
         return () => observer.disconnect();
-    }, [menuItem]);
+    }, []);
 
     return (
         <header

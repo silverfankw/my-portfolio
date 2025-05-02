@@ -27,7 +27,7 @@ import image12 from "/12.jpg"
 
 const Album: React.FC = () => {
 
-    const [index, setIndex] = useState(-1);
+    const [index, setIndex] = useState<number>(-1);
 
     const photos: { src: string, width: number, height: number }[] = [
         { src: image1, width: 1200, height: 800 },
