@@ -16,7 +16,7 @@ const NavBar: React.FC = () => {
         const headerHeight: number = navBarRef?.current?.['clientHeight'] ?? 0; // 110
         const offset: number = headerHeight / 2; // 55
 
-        const didScrollPage = () => {
+        const didScrollPage = (): void => {
             let calc = window.scrollY / offset
             if (calc > 1) {
                 calc = 1;
@@ -36,10 +36,10 @@ const NavBar: React.FC = () => {
     }, []);
 
     useEffect(() => {
-        const options = {
+        const options: object = {
             root: null,
             rootMargin: "0px",
-            threshold: [0.15],
+            threshold: [0.3],
         };
 
         const observer = new IntersectionObserver((entries: IntersectionObserverEntry[]) => {

@@ -33,7 +33,7 @@ const ContactCard: React.FC = () => {
 
             <form className="flex flex-col gap-5 p-10 rounded-xl bg-black/40" onSubmit={onSubmit}>
                 <span className="text-[2.5rem] font-bold">Get in touch 📩</span>
-                <span className="text-[1.5rem]">Feel free to send me message, I'll reply to you soon.🐱</span>
+                <span className="text-[1.5rem]">Feel free to send me message, I'll reply to you soon!</span>
 
                 <input type="hidden" name="from_name" value="Silverf" />
                 <input type="checkbox" name="botcheck" id="" style={{ "display": "none" }} />

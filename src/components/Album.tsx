@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import GradientText from "./GradientText";
 
 import { RowsPhotoAlbum } from "react-photo-album";
@@ -28,35 +28,70 @@ import image12 from "/12.jpg"
 const Album: React.FC = () => {
 
     const [index, setIndex] = useState<number>(-1);
+    const [userCheatCode, setUserCheatCode] = useState<string[]>([])
+    const [placeReveal, setPlaceReveal] = useState<boolean>(false)
 
-    const photos: { src: string, width: number, height: number }[] = [
-        { src: image1, width: 1200, height: 800 },
-        { src: image2, width: 1200, height: 800 },
-        { src: image3, width: 1200, height: 800 },
-        { src: image4, width: 1200, height: 800 },
-        { src: image5, width: 1200, height: 800 },
-        { src: image6, width: 1200, height: 800 },
-        { src: image7, width: 1200, height: 800 },
-        { src: image8, width: 1200, height: 800 },
-        { src: image9, width: 1200, height: 800 },
-        { src: image10, width: 1200, height: 800 },
-        { src: image11, width: 1200, height: 800 },
-        { src: image12, width: 1200, height: 800 }
+    const validCheatCode = "silver"
+
+    const validateCheatCode = (e: KeyboardEvent) => {
+        const pressedKey: string = e.key.toLowerCase()
+
+        if (userCheatCode.length >= 50)
+            setUserCheatCode([pressedKey])
+        else
+            setUserCheatCode([...userCheatCode, pressedKey])
+    }
+
+    useEffect((): void => {
+        // Validate if the exact user keypress matched the cheat code
+        if (userCheatCode.join("").indexOf(validCheatCode) > -1)
+            setPlaceReveal(true)
+    }, [userCheatCode])
+
+    useEffect(() => {
+        document.addEventListener("keydown", validateCheatCode);
+        return () => document.removeEventListener("keydown", validateCheatCode);
+    }, [validateCheatCode]);
+
+    const photos: { src: string, width: number, height: number, place: string }[] = [
+        { src: image1, width: 1200, height: 800, place: "Kai Ching Estate, Kai Tak, Kowloon, HK" },
+        { src: image2, width: 1200, height: 800, place: "Shek Pai Street, Kwai Chung, New Territories, HK" },
+        { src: image3, width: 1200, height: 800, place: "Tung Chi Street, Kwai Chung, New Territories, HK" },
+        { src: image4, width: 1200, height: 800, place: "Thousand Island Lake, Tai Lam Country Park, New Territories, HK" },
+        { src: image5, width: 1200, height: 800, place: "Argyle Street, Mong Kok East, Kowloon, HK" },
+        { src: image6, width: 1200, height: 800, place: "Wu Kai Sha Station Public Transport Interchange, New Territories, HK" },
+        { src: image7, width: 1200, height: 800, place: "Man Lok House, Tai Hang Sai Estate, Kowloon, HK" },
+        { src: image8, width: 1200, height: 800, place: "Junction of Woh Chai Street & Tai Hung Tung Road, Kowloon, HK" },
+        { src: image9, width: 1200, height: 800, place: "Sea Ranch, Lantau Island, HK" },
+        { src: image10, width: 1200, height: 800, place: "Sea Ranch, Lantau Island, HK" },
+        { src: image11, width: 1200, height: 800, place: "Pui O, Lantau Island, HK" },
+        { src: image12, width: 1200, height: 800, place: "Sea Ranch Beach, Lantau Island, HK" }
     ]
 
     return (
-        <section id="album" className="text-center flex flex-col py-30 gap-10">
+        <section tabIndex={0} id="album" className="outline-none text-center flex flex-col py-30 gap-10"
+        >
             <h1 className="text-[4rem] leading-25 titillium-web-bold max-lg:leading-20">
                 <GradientText text="Album Gallery" /> 🌆 📸
             </h1>
 
-            <span className="p-10 text-[1.75rem] leading-15">I love photography, especially breathtaking scenery, unique building and special buses. Sometimes I will bring my camera to capture any great moment in my spare time. 😝</span>
-            <span className="px-10 text-[1.75rem] leading-15">The following photos are some that I took and I found them beautiful, and would like to share with you.  🤩</span>
+            <div className="px-10 flex flex-col gap-4 text-[1.75rem] leading-15 text-shadow-lg ">
+                <span>The following photos are some that I took and I found them beautiful in different regions in HK.</span>
+                <span>A little game, can you guess where is the original place in each photo?</span>
+                <span>You can check the answer if you type my name now. 👻</span>
+            </div>
 
             <RowsPhotoAlbum
                 photos={photos}
                 onClick={({ index }) => setIndex(index)}
                 padding={20}
+                render={{
+                    extras: (_, { index }) => (
+                        <span className={`${!placeReveal && `hidden`} max-md:text-lg text-sm `}>
+                            {photos[index].place}
+                        </span>
+                    ),
+                }}
                 sizes={{
                     size: "1168px",
                     sizes: [

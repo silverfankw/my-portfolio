@@ -2,7 +2,7 @@ import NavBar from './components/NavBar'
 import ProfileCard from './components/ProfileCard'
 import Projects from './components/ProjectCard'
 import Album from './components/Album'
-import ContactCard from './components/ContentCard'
+import ContactCard from './components/ContactCard'
 
 import './App.css'
 
@@ -26,7 +26,7 @@ function App() {
         </div>
 
         <div className="bg-[url(/src/assets/bg3.jpg)] bg-cover">
-          <div className="backdrop-blur-[6px]">
+          <div className="backdrop-blur-[10px]">
             <Album />
           </div>
         </div >
