@@ -1,4 +1,5 @@
 import { useState } from "react";
+import RevealText from "./RevealText";
 
 
 const ContactCard: React.FC = () => {
@@ -31,13 +32,14 @@ const ContactCard: React.FC = () => {
     return (
         <section id="contact" className="p-15 flex flex-col items-center">
 
-            <form className="flex flex-col gap-5 p-10 rounded-xl bg-black/40" onSubmit={onSubmit}>
-                <span className="text-[2.5rem] font-bold">Get in touch 📩</span>
+            <form className="flex flex-col gap-5 p-10 rounded-xl bg-slate-800/75" onSubmit={onSubmit}>
+                <RevealText>
+                    <span className="text-[2.5rem] font-bold">Get in touch 📩</span>
+                </RevealText>
                 <span className="text-[1.5rem]">Feel free to send me message, I'll reply to you soon!</span>
 
                 <input type="hidden" name="from_name" value="Silverf" />
-                <input type="checkbox" name="botcheck" id="" style={{ "display": "none" }} />
-                <input type="hidden" name="access_key" value="Yc92bca04-0e0c-4aef-8bd0-6f0d37b4b3e8" />
+                <input type="checkbox" name="botcheck" id="" aria-hidden="true" style={{ "display": "none" }} />
                 <input type="hidden" name="subject" value={`New Message from Web3Forms -- silverf.dev`} />
 
                 <div className="flex flex-col gap-2">
@@ -75,7 +77,7 @@ const ContactCard: React.FC = () => {
                 </div>
 
 
-                <button className="bg-yellow-400 hover:bg-yellow-500/95
+                <button data-magnetic className="bg-yellow-400 hover:bg-yellow-500/95
                 text-black hover:cursor-pointer 
                 font-medium rounded-lg text-sm py-3 text-center" type="submit">Submit Form</button>
 

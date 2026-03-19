@@ -1,4 +1,4 @@
-import profile from "../assets/profile.png"
+import { useEffect, useRef, useState } from "react"
 import react from "../assets/react.svg"
 import html5 from "../assets/html5.svg"
 import css3 from "../assets/css3.svg"
@@ -10,7 +10,44 @@ import typescript from "../assets/typescript.svg"
 import { SkillsetProps, SkillBadge } from "./SkillBadge"
 import GradientText from "./GradientText"
 
+const SCRAMBLE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&"
+
+function useScrambleText(target: string, startDelay = 200) {
+    const [display, setDisplay] = useState(() => target.replace(/[^ ]/g, "?"))
+    const frameRef = useRef<number | null>(null)
+
+    useEffect(() => {
+        let resolved = 0
+        const total = target.length
+        const startAt = Date.now() + startDelay
+
+        const tick = () => {
+            const now = Date.now()
+            if (now < startAt) { frameRef.current = requestAnimationFrame(tick); return }
+
+            const elapsed = now - startAt
+            resolved = Math.min(total, Math.floor(elapsed / 38))
+
+            setDisplay(
+                target.split("").map((char, i) => {
+                    if (char === " ") return " "
+                    if (i < resolved) return char
+                    return SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)]
+                }).join("")
+            )
+
+            if (resolved < total) frameRef.current = requestAnimationFrame(tick)
+        }
+
+        frameRef.current = requestAnimationFrame(tick)
+        return () => { if (frameRef.current) cancelAnimationFrame(frameRef.current) }
+    }, [target, startDelay])
+
+    return display
+}
+
 const ProfileCard: React.FC = () => {
+    const scrambled = useScrambleText("Hi I'm Silver")
 
     const skillsetGroup: SkillsetProps[] = [
         { src: react, name: "React" },
@@ -28,16 +65,13 @@ const ProfileCard: React.FC = () => {
 
             {/* Profile Content */}
             <div className="flex gap-10">
-                {/* Profile Image */}
-                <img className="p-6 w-[20vw] h-[20vw] rounded-[50%] opacity-75 
-                max-lg:w-[30vw] max-lg:h-[30vw] max-md:w-[40vw] max-md:h-[40vw]" src={profile} alt="Avatar" />
 
                 <div className="text-center flex flex-col gap-10">
                     {/* Greetings */}
-                    <h1 className="text-[3rem] leading-20 titillium-web-bold max-lg:leading-18">
-                        <GradientText text="Hi I'm Silver" />
+                    <h2 className="text-[3rem] leading-20 titillium-web-bold max-lg:leading-18">
+                        <GradientText text={scrambled} />
                         , a frontend developer based in Hong Kong 🇭🇰
-                    </h1>
+                    </h2>
 
                     {/* Brief Intro */}
                     <div className="text-[1.5rem] tracking-wide">

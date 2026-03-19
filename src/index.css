@@ -13,7 +13,7 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  scroll-behavior: smooth;
+  /* scroll-behavior removed — Lenis handles smooth scrolling */
 }
 
 html {
@@ -34,17 +34,16 @@ html {
 
 @media(max-width: 640px) {
   html {
-    font-size: 10px;
+    font-size: 11px;
   }
 }
 
 @media(max-width: 480px) {
   html {
-    font-size: 8px;
+    font-size: 10px;
   }
 }
 
 body { 
-  min-width: 450px;
   color: white;
 }
