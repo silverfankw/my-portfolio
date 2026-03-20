@@ -5,7 +5,6 @@ import ProfileCard from './components/ProfileCard'
 import Projects from './components/ProjectCard'
 import ContactCard from './components/ContactCard'
 import CustomCursor from './components/CustomCursor'
-import SpotlightSection from './components/SpotlightSection'
 import ScrollBackground from './components/ScrollBackground'
 
 import './App.css'
