@@ -5,22 +5,20 @@ interface SpotlightSectionProps {
     className?: string
     /** Spotlight radius in px */
     radius?: number
-    /** Blur inside spotlight (lower = clearer reveal) */
-    innerBlur?: string
-    /** Blur outside spotlight */
-    outerBlur?: string
+    /** Opacity of the dark overlay outside the spotlight (0–1) */
+    darkness?: number
 }
 
 /**
- * A section wrapper that reveals the background image under the cursor
- * by dynamically reducing backdrop-blur inside a radial gradient spotlight.
+ * A section wrapper that punches a transparent hole in a dark overlay at the
+ * cursor position, revealing the vivid body background gradient beneath.
+ * Works by compositing a radial-gradient overlay — no backdrop-filter needed.
  */
 const SpotlightSection: React.FC<SpotlightSectionProps> = ({
     children,
     className = "",
-    radius = 260,
-    innerBlur = "0px",
-    outerBlur = "8px",
+    radius = 280,
+    darkness = 0.84,
 }) => {
     const sectionRef = useRef<HTMLDivElement>(null)
     const [pos, setPos] = useState<{ x: number; y: number } | null>(null)
@@ -32,39 +30,27 @@ const SpotlightSection: React.FC<SpotlightSectionProps> = ({
 
     const onMouseLeave = useCallback(() => setPos(null), [])
 
-    // Two-layer technique:
-    // 1. A full outer blur layer always present
-    // 2. A spotlight-shaped layer with no blur, clipped by a radial mask — revealed only near cursor
-    const spotlightMask = pos
-        ? `radial-gradient(circle ${radius}px at ${pos.x}px ${pos.y}px, black 60%, transparent 100%)`
-        : "none"
+    const overlayBackground = pos
+        ? `radial-gradient(circle ${radius}px at ${pos.x}px ${pos.y}px, transparent 0%, rgba(0,0,0,${darkness}) 65%)`
+        : `rgba(0,0,0,${darkness})`
 
     return (
         <div
             ref={sectionRef}
             onMouseMove={onMouseMove}
             onMouseLeave={onMouseLeave}
-            className={`relative overflow-hidden ${className}`}
+            className={`relative ${className}`}
         >
-            {/* Outer blur — always covers everything */}
-            <div
-                className="absolute inset-0 pointer-events-none"
-                style={{ backdropFilter: `blur(${outerBlur})` }}
-            />
-
-            {/* Inner spotlight — no blur, masked to cursor circle */}
+            {/* Dark overlay with a transparent spotlight hole at the cursor */}
             <div
                 className="absolute inset-0 pointer-events-none"
                 style={{
-                    backdropFilter: `blur(${innerBlur})`,
-                    WebkitMaskImage: spotlightMask,
-                    maskImage: spotlightMask,
-                    transition: pos ? "none" : "opacity 0.4s ease",
-                    opacity: pos ? 1 : 0,
+                    background: overlayBackground,
+                    transition: pos ? "none" : "background 0.5s ease",
                 }}
             />
 
-            {/* Content sits on top of both blur layers */}
+            {/* Content sits above overlay */}
             <div className="relative">
                 {children}
             </div>

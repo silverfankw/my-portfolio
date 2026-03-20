@@ -65,14 +65,12 @@ const NavBar: React.FC = () => {
             className="fixed z-50 px-8 py-2 left-0 right-0 
         flex justify-between items-center bg-black">
 
-            {/* Logo */}
             <h1 data-magnetic className="hover:cursor-pointer p-3 rounded-md 
              font-[Anta] text-white text-[2.25rem] 
              min-md:after:content-['_Fan'] capture-hover-effect">
-                <a href="#profile">Silver</a>
+                <a href="#">Silver</a>
             </h1>
 
-            {/* Navigation items */}
             <ul className="flex items-center list-none gap-30 text-[1.375rem]
             max-xl:gap-20 max-lg:gap-12 max-md:gap-6">
                 {
@@ -86,7 +84,6 @@ const NavBar: React.FC = () => {
                     )}
             </ul>
 
-            {/* Icons group */}
             <div className="flex justify-between gap-6">
                 <a data-magnetic href="https://github.com/silverfankw" target="_blank" aria-label="GitHub profile">
                     <GitHubIcon fontSize="large" sx={{ transitionProperty: "scale", ":hover": { scale: 1.5 } }} />

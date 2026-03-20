@@ -1,5 +1,3 @@
-import GradientText from "./GradientText"
-import RevealText from "./RevealText"
 import kmbdpip from "../assets/project-kmb-dpip.jpg"
 import pubtrec from "../assets/project-pubtrec.png"
 import { ProjectDetail, ProjectInfoProps } from "./ProjectDetail"
@@ -27,13 +25,7 @@ const ProjectCard: React.FC = () => {
 
     return (
         <section id="projects" className="tracking-wide flex flex-col items-center p-30 text-center text-white">
-            <RevealText>
-                <h2 className="text-[3.75rem] leading-25 titillium-web-bold 
-                    max-xl:leading-20">
-                    <GradientText text="Projects" /> 👀
-                </h2>
-            </RevealText>
-            <div className="my-20 flex gap-10 max-xl:flex-wrap">
+            <div className="my-5 flex gap-10 max-xl:flex-wrap">
                 {projectGroup.map((projectInfo: ProjectInfoProps, key: number) => {
                     return <ProjectDetail key={`project-${key}`} {...projectInfo} animationDelay={`${key * 4.5}s`} />
                 })}

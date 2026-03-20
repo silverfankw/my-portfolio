@@ -6,6 +6,7 @@ import Projects from './components/ProjectCard'
 import ContactCard from './components/ContactCard'
 import CustomCursor from './components/CustomCursor'
 import SpotlightSection from './components/SpotlightSection'
+import ScrollBackground from './components/ScrollBackground'
 
 import './App.css'
 
@@ -36,20 +37,24 @@ function App() {
   return (
     <>
       <CustomCursor />
-      <div className="flex flex-col">
+      <ScrollBackground />
+      <div className="relative flex flex-col gap-60">
         <NavBar />
+        <ProfileCard />
+        <Projects />
+        <ContactCard />
 
-        <SpotlightSection className="bg-[url(/src/assets/bg1.jpg)] bg-cover flex flex-col gap-20" outerBlur="6px">
+        {/* <SpotlightSection className="pt-[110px]" darkness={0.88}>
           <ProfileCard />
         </SpotlightSection>
 
-        <SpotlightSection className="bg-[url(/src/assets/bg2.jpg)] bg-cover" outerBlur="4px">
+        <SpotlightSection darkness={0.84}>
           <Projects />
         </SpotlightSection>
 
-        <SpotlightSection className="bg-[url(/src/assets/bg3.jpg)] bg-cover" outerBlur="1px">
+        <SpotlightSection darkness={0.80}>
           <ContactCard />
-        </SpotlightSection>
+        </SpotlightSection> */}
       </div>
     </>
   )

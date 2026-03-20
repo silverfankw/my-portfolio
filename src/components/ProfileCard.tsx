@@ -60,32 +60,24 @@ const ProfileCard: React.FC = () => {
     ]
 
     return (
-        <section id="profile" className="px-30 max-md:px-10 max-lg:px-15 
-        pt-50 max-xl:pt-40 max-md:pt-30 items-center gap-5 text-white">
+        <section id="profile" className="py-60 mx-10 md:mx-40 items-start gap-20 text-white flex flex-col xl:flex-row">
 
-            {/* Profile Content */}
-            <div className="flex gap-10">
+            <div className="flex-1 min-w-0 flex flex-col gap-10">
+                <h2 className="text-[3rem] leading-20 titillium-web-bold max-lg:leading-18">
+                    <GradientText text={scrambled} />
+                    , a frontend developer based in Hong Kong 🇭🇰
+                </h2>
 
-                <div className="text-center flex flex-col gap-10">
-                    {/* Greetings */}
-                    <h2 className="text-[3rem] leading-20 titillium-web-bold max-lg:leading-18">
-                        <GradientText text={scrambled} />
-                        , a frontend developer based in Hong Kong 🇭🇰
-                    </h2>
-
-                    {/* Brief Intro */}
-                    <div className="text-[1.5rem] tracking-wide">
-                        <span className="py-10 leading-12 max-md:leading-4">
-                            🎓 Graduated from HKUST in Computer Science Major, with 3 years frontend experience in in-house project and solution integrator (SI) company, ranging from e-commerce to property industry. While at the same time, I also worked on backend side with Go, MongoDB & Docker.
-                        </span>
-                    </div>
+                <div className="text-[1.5rem] tracking-wide">
+                    <span className="py-10 leading-14 max-md:leading-12 block indent-6">
+                        🎓 Graduated from HKUST in Computer Science Major, with 3 years frontend experience in in-house project and solution integrator (SI) company, ranging from e-commerce to property industry. I also have hand-on experience on backend and container skillset with Go, MongoDB & Docker.
+                    </span>
                 </div>
             </div>
 
-            {/* Skillset */}
-            <div className="text-center py-20 text-2xl">
-                <span className="font-semibold">Primary Skillset</span>
-                <div className="flex flex-wrap gap-6 pt-10 justify-center">
+            <div className="w-full md:w-auto md:shrink-0 flex flex-col items-center gap-20 max-md:gap-14 text-2xl">
+                <span className="text-4xl font-semibold">Primary Skillset</span>
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
                     {skillsetGroup.map((skill, key: number) => (
                         <SkillBadge key={`skillbadge-${key}`} {...skill} />
                     ))}
